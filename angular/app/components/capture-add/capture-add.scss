@@ -1,0 +1,9 @@
+.custom-state-select option{
+  float: left;
+  width: 40px;
+  height:30px;
+  text-align: center;
+}
+.custom-state-select option:nth-child(10n + 1) {
+  clear: left;
+}

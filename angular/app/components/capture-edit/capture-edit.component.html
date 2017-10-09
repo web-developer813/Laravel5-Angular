@@ -1,0 +1,135 @@
+<section class="content-header">
+    <h1>Data Captures</h1>
+    <ol class="breadcrumb">
+        <li><a ui-sref="app.landing"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="app.datas">Data Capture Lists</a></li>
+        <li class="active">Edit Data Capture</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Data Capture</h3>
+                </div>
+                <form class="form-horizontal" name="captureForm" ng-submit="vm.save(captureForm.$valid)" novalidate>
+                    <div class="box-body">
+                        <!--<div class="form-group" ng-class="{ 'has-error': captureForm.topic_id.$invalid && ( vm.formSubmitted || captureForm.topic_id.$touched) }">-->
+                            <!--<label for="inputEmail3" class="col-sm-2 control-label ">Topics <span  style="color:red">*</span></label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<select class="form-control" multiple name="topic_id" required ng-model="vm.data_daily.data.topic_id" size="10">-->
+                                    <!--<option value="{{topic.id}}" ng-repeat="topic in vm.systemTopics">{{topic.name}}</option>-->
+                                <!--</select>-->
+                                <!--<p ng-show="captureForm.topic_id.$error.required && ( vm.formSubmitted || captureForm.topic_id.$touched)"-->
+                                   <!--class="help-block">Topic is required.</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group" ng-class="{ 'has-error': captureForm.topic_id.$invalid && ( vm.formSubmitted || captureForm.topic_id.$touched) }">
+                            <label for="inputEmail3" class="col-sm-2 control-label ">Topic <span  style="color:red">*</span></label>
+                            <div class="col-sm-10">
+                                <ui-select name="topic_id" ng-required="true" multiple ng-model="vm.topicSelected" theme="bootstrap">
+                                    <ui-select-match placeholder="Select topic(s)...">{{$item.name}}</ui-select-match>
+                                    <ui-select-choices repeat="item  in vm.systemTopics | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search "></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <p ng-show="captureForm.topic_id.$error.required && ( vm.formSubmitted || captureForm.topic_id.$touched)"
+                                   class="help-block">Topic is required.</p>
+                            </div>
+                        </div>
+                        <!--<div class="form-group" ng-class="{ 'has-error': captureForm.key_field_id.$invalid && ( vm.formSubmitted || captureForm.key_field_id.$touched) }">-->
+                            <!--<label for="inputEmail3" class="col-sm-2 control-label">Key fields <span  style="color:red">*</span></label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<select  class="form-control" multiple name="key_field_id" required ng-model="vm.data_daily.data.key_field_id" size="10">-->
+                                    <!--<option value="{{keyField.id}}" ng-repeat="keyField in vm.systemKeyFields">{{keyField.name}}</option>-->
+                                <!--</select>-->
+                                <!--<p ng-show="captureForm.key_field_id.$error.required && ( vm.formSubmitted || captureForm.key_field_id.$touched)"-->
+                                   <!--class="help-block">Key field is required.</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="form-group" ng-classystemKeyFieldss="{ 'has-error': captureForm.key_field_id.$invalid && ( vm.formSubmitted || captureForm.key_field_id.$touched) }">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Key field <span  style="color:red">*</span></label>
+                            <div class="col-sm-10">
+                                <ui-select name="key_field_id" ng-required="true" multiple ng-model="vm.keySelected" theme="bootstrap">
+                                    <ui-select-match placeholder="Select key field(s)...">{{$item.name}}</ui-select-match>
+                                    <ui-select-choices repeat="item  in vm.systemKeyFields | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search "></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <p ng-show="captureForm.key_field_id.$error.required && ( vm.formSubmitted || captureForm.key_field_id.$touched)"
+                                   class="help-block">Key field is required.</p>
+                            </div>
+                        </div>
+
+
+
+                        <!--<div class="form-group" ng-class="{ 'has-error': captureForm.state_id.$invalid && ( vm.formSubmitted || captureForm.state_id.$touched) }">-->
+                            <!--<label for="inputEmail3" class="col-sm-2 control-label">State <span  style="color:red">*</span></label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<select multiple class="form-control custom-state-select" name="state_id"  ng-model="vm.data_daily.data.state_id" required size="5">-->
+                                    <!--<option value="{{stateItem.id}}" ng-repeat="stateItem in vm.systemStates">{{stateItem.name}}</option>-->
+                                <!--</select>-->
+                                <!--<p ng-show="captureForm.state_id.$error.required && ( vm.formSubmitted || captureForm.state_id.$touched)"-->
+                                   <!--class="help-block">State is required.</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="form-group" ng-class="{ 'has-error': captureForm.state_id.$invalid && ( vm.formSubmitted || captureForm.state_id.$touched) }">
+                            <label for="inputEmail3" class="col-sm-2 control-label">State <span  style="color:red">*</span></label>
+                            <div class="col-sm-10">
+                                <ui-select name="state_id" ng-required="true" multiple ng-model="vm.stateSelected" theme="bootstrap">
+                                    <ui-select-match placeholder="Select state(s)...">{{$item.name}}</ui-select-match>
+                                    <ui-select-choices repeat="item  in vm.systemStates | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search "></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <p ng-show="captureForm.state_id.$error.required && ( vm.formSubmitted || captureForm.state_id.$touched)"
+                                   class="help-block">State is required.</p>
+                            </div>
+                        </div>
+                        <!--<div class="form-group" ng-class="{ 'has-error': captureForm.partner_id.$invalid && ( vm.formSubmitted || captureForm.partner_id.$touched) }">-->
+                            <!--<label for="inputEmail3" class="col-sm-2 control-label">Partner</label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<select multiple class="form-control" name="partner_id" ng-model="vm.data_daily.data.partner_id" size="10">-->
+                                    <!--<option value =""></option>-->
+                                    <!--<option value="{{partner.id}}" ng-repeat="partner in vm.systemPartners" >{{partner.name}}</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group" ng-class="{ 'has-error': captureForm.partner_id.$invalid && ( vm.formSubmitted || captureForm.partner_id.$touched) }">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Partner</label>
+                            <div class="col-sm-10">
+                                <ui-select name="partner_id" multiple ng-model="vm.partnerSelected" theme="bootstrap">
+                                    <ui-select-match placeholder="Select partner(s)...">{{$item.name}}</ui-select-match>
+                                    <ui-select-choices repeat="item  in vm.systemPartners | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search "></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': captureForm.entry_text.$invalid && ( vm.formSubmitted || captureForm.entry_text.$touched) }">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Note <span  style="color:red">*</span></label>
+                            <div class="col-sm-10">
+                                <textarea name="entry_text" ng-model="vm.data_daily.data.entry_text" required class="form-control" rows="5" ui-tinymce="tinymceOptions"></textarea>
+                                <p ng-show="captureForm.entry_text.$error.required && ( vm.formSubmitted || captureForm.entry_text.$touched)"
+                                   class="help-block">Note is required.</p>
+                            </div>
+                        </div>
+                        <div ng-if="vm.alerts" class="alert alert-{{alert.type}}" ng-repeat="alert in vm.alerts">
+                            <h4>{{alert.title}}</h4>
+                            <p>{{alert.msg}}</p>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a ui-sref="app.datas" class="btn btn-default"><i class="fa fa-angle-double-left"></i>
+                            Back</a>
+                        <button type="submit" class="btn btn-primary pull-right">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/tinymce/tinymce.js" type="text/javascript"></script>
+</section>
